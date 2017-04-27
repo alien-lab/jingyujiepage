@@ -7,15 +7,22 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import store from './vuex/store'
 import Vuex from 'vuex'
-import Mock from './mock'
-Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+import Promise from 'promise-polyfill';
+
+// To add to window
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
+import axios from 'axios';
+
 
 Vue.use(ElementUI)
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
-
+Vue.prototype.$http = axios;
 /* eslint-disable no-new */
 new Vue({
   router,

@@ -16,16 +16,8 @@
 </template>
 
 <script>
+  import { requestLogin } from '../api/api';
   //import NProgress from 'nprogress'
-  const LoginUsers = [
-    {
-      id: 1,
-      username: 'admin',
-      password: '123456',
-      avatar: 'https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/user.png',
-      name: '张某某'
-    }
-  ];
   export default {
     data() {
       return {
@@ -48,7 +40,6 @@
       };
     },
     methods: {
-
       handleReset2() {
         this.$refs.ruleForm2.resetFields();
       },
@@ -56,7 +47,24 @@
         var _this = this;
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
-//              this.$router.push({ path: '/table' });
+            //_this.$router.replace('/table');
+            this.logining = true;
+            //NProgress.start();
+            var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+            requestLogin(loginParams).then(data => {
+              this.logining = false;
+              //NProgress.done();
+              let { msg, code, user } = data;
+              if (code !== 200) {
+                this.$message({
+                  message: msg,
+                  type: 'error'
+                });
+              } else {
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.$router.push({ path: '/table' });
+              }
+            });
           } else {
             console.log('error submit!!');
             return false;
@@ -81,13 +89,13 @@
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
-    .title {
-      margin: 0px auto 40px auto;
-      text-align: center;
-      color: #505458;
-    }
-    .remember {
-      margin: 0px 0px 35px 0px;
-    }
+  .title {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
+  }
+  .remember {
+    margin: 0px 0px 35px 0px;
+  }
   }
 </style>

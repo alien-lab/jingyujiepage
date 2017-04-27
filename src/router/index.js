@@ -3,13 +3,12 @@ import Router from 'vue-router'
 import Login from '@/components/Login.vue'
 import NotFound from '@/components/404.vue'
 import Home from '@/components/Home.vue'
-import Main from '@/components/Main.vue'
 import Table from '@/components/nav1/Table.vue'
 import Form from '@/components/nav1/Form.vue'
 import user from '@/components/nav1/user.vue'
 import Page4 from '@/components/nav2/Page4.vue'
 import Page5 from '@/components/nav2/Page5.vue'
-import Page6 from '@/components/nav3/Page6.vue'
+import Artwork from '@/components/nav3/artwork.vue'
 import echarts from '@/components/charts/echarts.vue'
 
 Vue.use(Router)
@@ -28,14 +27,12 @@ const router = new Router({
       name: '',
       hidden: true
     },
-    //{ path: '/main', component: Main },
     {
       path: '/',
       component: Home,
       name: '导航一',
       iconCls: 'el-icon-message',//图标样式class
       children: [
-        { path: '/main', component: Main, name: '主页', hidden: true },
         { path: '/table', component: Table, name: 'Table' },
         { path: '/form', component: Form, name: 'Form' },
         { path: '/user', component: user, name: '列表' },
@@ -55,10 +52,10 @@ const router = new Router({
       path: '/',
       component: Home,
       name: '',
-      iconCls: 'fa fa-address-card',
+      iconCls: 'el-icon-picture',
       leaf: true,//只有一个节点
       children: [
-        { path: '/page6', component: Page6, name: '导航三' }
+        { path: '/artwork', component: Artwork, name: '艺术品' }
       ]
     },
     {
@@ -77,16 +74,16 @@ const router = new Router({
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  //NProgress.start();
-  if (to.path == '/login') {
-    sessionStorage.removeItem('user');
-  }
-  let user = JSON.parse(sessionStorage.getItem('user'));
-  if (!user && to.path != '/login') {
-    next({ path: '/login' })
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   //NProgress.start();
+//   if (to.path == '/login') {
+//     sessionStorage.removeItem('user');
+//   }
+//   let user = JSON.parse(sessionStorage.getItem('user'));
+//   if (!user && to.path != '/login') {
+//     next({ path: '/login' })
+//   } else {
+//     next()
+//   }
+// })
 export default router
