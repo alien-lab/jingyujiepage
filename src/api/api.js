@@ -35,11 +35,32 @@ export const addUser = params => {
 export const addArtwork = params => {
   return axios.post(`${base}/artwork/addArtwork`, {params: params});
 };
+//修改artwork
+export const updateArtwork = params => {
+  return axios.post(`${base}/artwork/updateArtwork`, {params: params});
+};
+//删除一条artwork记录
+export const delArtworkSubmit = params => {
+  return axios.delete(`${base}/artwork/deleteArtwork/` + params.id);
+};
+//批量删除artwork
+export const batchDelArtworkSubmit = params => {
+  return axios.delete(`${base}/artwork/batchDeleteArtwork/` + params.ids);
+};
 //不分页获取所有artwork
 export const getArtwork = params => {
   return axios.get(`${base}/artwork/getAll`, {params: params});
 };
 //分页获取artwork
 export const getArtworkPage = params => {
-  return axios.get(`${base}/artwork/getAllByPage/`+params.index+`-`+params.size);
+  return axios.get(`${base}/artwork/getAllByPage/` + params.index + `-` + params.size);
 };
+//根据name模糊分页查询artwork
+export const getArtworkNameLikePage = params => {
+  return axios.get(`${base}/artwork/getArtworkByNameLikePage/` + params.likeName + `-` + params.index + `-` + params.size);
+};
+//根据artwork查询detail
+export const getDetailByArtwork = params => {
+  return axios.get(`${base}/detail/getDetailByArtwork/` + params.artworkId);
+};
+

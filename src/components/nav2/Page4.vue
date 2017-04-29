@@ -12,14 +12,6 @@
   import { mapActions } from 'vuex'
 
   export default {
-    created(){
-      let vm = this;
-      this.$http.get("http://localhost:8080/artwork/getAll")
-        .then(function(res){
-          console.log(res.data);
-        })
-
-    },
     computed: {
   	// 使用对象展开运算符将 getters 混入 computed 对象中
     ...mapGetters([
