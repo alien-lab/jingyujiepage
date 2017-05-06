@@ -9,6 +9,7 @@ import store from './vuex/store'
 import Vuex from 'vuex'
 import 'font-awesome/css/font-awesome.min.css'
 import Promise from 'promise-polyfill';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // To add to window
 if (!window.Promise) {

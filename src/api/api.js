@@ -63,4 +63,16 @@ export const getArtworkNameLikePage = params => {
 export const getDetailByArtwork = params => {
   return axios.get(`${base}/detail/getDetailByArtwork/` + params.artworkId);
 };
+//添加一条艺术品详情记录
+export const addDetail = params => {
+  return axios.post(`${base}/detail/addArtworkDetail/`, {params: params});
+};
+//删除一条detail记录
+export const delDetailSubmit = params => {
+  return axios.delete(`${base}/detail/deleteDetail/` + params.id);
+};
+//修改detail状态
+export const updateDetail = params => {
+  return axios.post(`${base}/detail/updateDetail`, {params: params});
+};
 
